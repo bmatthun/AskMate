@@ -20,27 +20,36 @@ public class QuestionService {
         this.questionsDAO = questionsDAO;
     }
 
+    private QuestionDTO parseQuestionToQuestionDTO(Question question) {
+        return new QuestionDTO(question.getTitle(), question.getDescription(), question.getPublicationDate());
+    }
+
+    private Question parseNewQuestionDTOtoQuestion(NewQuestionDTO newQuestionDTO) {
+        System.out.println(LocalDateTime.now());
+        return new Question(newQuestionDTO.getTitle(), newQuestionDTO.getDescription(), LocalDateTime.now());
+    }
+
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionsDAO.getAllQuestions();
         List<QuestionDTO> questionDTOS = allQuestions.stream()
-                .map(question -> new QuestionDTO(question.title(), question.description(), question.publicationDate()))
+                .map(question -> parseQuestionToQuestionDTO(question))
                 .toList();
 
         return questionDTOS;
     }
 
     public QuestionDTO getQuestionById(int id) {
-        // TODO
-        throw new UnsupportedOperationException();
+        Question question = questionsDAO.getQuestionById(id);
+        return parseQuestionToQuestionDTO(question);
     }
+
 
     public boolean deleteQuestionById(int id) {
-        // TODO
-        throw new UnsupportedOperationException();
+        return questionsDAO.deleteQuestionById(id);
     }
 
-    public int addNewQuestion(NewQuestionDTO question) {
-        // TODO
-        throw new UnsupportedOperationException();
+    public int addNewQuestion(NewQuestionDTO newQuestionDTO) {
+        Question question = parseNewQuestionDTOtoQuestion(newQuestionDTO);
+        return questionsDAO.createQuestion(question);
     }
 }

@@ -5,10 +5,7 @@ import com.codecool.askmateoop.dao.model.database.DatabaseConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -44,5 +41,67 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
             throw new RuntimeException(e);
         }
         return questions;
+    }
+
+    @Override
+    public Question getQuestionById(int questionId) {
+        String sql = "SELECT id, title, description, published_date FROM question where id = ?;";
+        try (Connection conn = databaseConnection.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+        ) {
+            statement.setInt(1, questionId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                LocalDateTime publishedDate = resultSet.getTimestamp("published_date").toLocalDateTime();
+                return new Question(id, title, description, publishedDate);
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    @Override
+    public int createQuestion(Question question) {
+        String sql = "INSERT INTO question(title, description, published_date) VALUES (?,?,?);";
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
+        ) {
+            statement.setString(1, question.getTitle());
+            statement.setString(2, question.getDescription());
+            statement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+
+            statement.executeUpdate();
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating question failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public boolean deleteQuestionById(int id) {
+        String sql = "DELETE FROM question WHERE id = ?;";
+        try (Connection conn = databaseConnection.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql)
+        ) {
+            statement.setInt(1, id);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
