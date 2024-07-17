@@ -34,7 +34,7 @@ public class Configuration {
         return new QuestionsDaoJdbc(databaseConnection);
     }
 
-  /*  @Bean
+ /*@Bean
     public DataSource getDataSource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
