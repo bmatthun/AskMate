@@ -1,12 +1,19 @@
 import { Outlet, Link } from "react-router-dom";
 
 const Layout = () => (
+  <>
+  <h1>
+    Welcome to AskMáté.com
+  </h1>
+  <h3>
+  Providing answers to your most burning questions since...yesterday
+  </h3>
   <div className="Layout">
     <nav>
       <ul>
         <li>
           <Link to="/login">
-            <button type="button">Log in</button>
+            <button type="button">Login</button>
           </Link>
         </li>
         <li>
@@ -18,6 +25,7 @@ const Layout = () => (
     </nav>
     <Outlet />
   </div>
+  </>
 );
 
 export default Layout;
