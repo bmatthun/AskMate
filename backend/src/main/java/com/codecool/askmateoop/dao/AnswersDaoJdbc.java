@@ -51,6 +51,31 @@ public class AnswersDaoJdbc implements AnswersDAO {
         return answers;
     }
 
+    @Override
+    public int createAnswer(Answer answer, int questionId, int userId) throws SQLException {
+        String sql = "INSERT INTO answer(question_id, user_id, description, publishing_date) VALUES (?, ?, ?, ?);";
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, questionId);
+            statement.setInt(2, userId);
+            statement.setString(3, answer.getDescription());
+            statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+
+            statement.executeUpdate();
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating answer failed, no ID obtained.");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
 //
 //    @Override
 //    public int createQuestion(Question question) {
@@ -91,4 +116,4 @@ public class AnswersDaoJdbc implements AnswersDAO {
 //            throw new RuntimeException(e);
 //        }
 //    }
-}
+
