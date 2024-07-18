@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-
-export default function Homepage() {
+export default function AllQandA() {
   const [questions, setQuestions] = useState(null);
 
 async function fetchQuestions() {
