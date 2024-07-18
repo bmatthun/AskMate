@@ -21,7 +21,7 @@ public class QuestionService {
     }
 
     private QuestionDTO parseQuestionToQuestionDTO(Question question) {
-        return new QuestionDTO(question.getTitle(), question.getDescription(), question.getPublicationDate());
+        return new QuestionDTO(question.getId(), question.getTitle(), question.getDescription(), question.getPublicationDate());
     }
 
     private Question parseNewQuestionDTOtoQuestion(NewQuestionDTO newQuestionDTO) {
