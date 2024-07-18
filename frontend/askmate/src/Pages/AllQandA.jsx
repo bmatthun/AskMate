@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AnswerForm from "./AnswerForm/AnswerForm";
 import { useNavigate } from "react-router-dom";
+import QuestionPost from "./QuestionPost";
 
 export default function AllQandA() {
   const [questions, setQuestions] = useState(null);
@@ -40,7 +41,7 @@ export default function AllQandA() {
   };
 
   const handleDeleteQuestion = (id) => {
-    
+
     console.log(id);
     deleteQuestion(id);
     setQuestions((questions) => {
@@ -72,6 +73,7 @@ export default function AllQandA() {
 
   return questions ? (
     <>
+     <QuestionPost/>
       {questions.map((question) => (
         <div key={question.id}>
           <div>Title: {question.title}</div>
