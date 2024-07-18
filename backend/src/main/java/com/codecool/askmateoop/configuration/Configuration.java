@@ -1,5 +1,7 @@
 package com.codecool.askmateoop.configuration;
 
+import com.codecool.askmateoop.dao.AnswersDAO;
+import com.codecool.askmateoop.dao.AnswersDaoJdbc;
 import com.codecool.askmateoop.dao.QuestionsDAO;
 import com.codecool.askmateoop.dao.QuestionsDaoJdbc;
 import com.codecool.askmateoop.dao.model.database.DatabaseConnection;
@@ -32,6 +34,11 @@ public class Configuration {
     @Bean
     public QuestionsDAO questionsDAO(DatabaseConnection databaseConnection) {
         return new QuestionsDaoJdbc(databaseConnection);
+    }
+
+    @Bean
+    public AnswersDAO answersDAO(DatabaseConnection databaseConnection) {
+        return new AnswersDaoJdbc(databaseConnection);
     }
 
  /*@Bean
