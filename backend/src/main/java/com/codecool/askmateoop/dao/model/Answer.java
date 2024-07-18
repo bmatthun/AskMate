@@ -23,6 +23,11 @@ public class Answer {
         this.description = description;
     }
 
+    public Answer(String description, LocalDateTime publishing_date) {
+        this.description = description;
+        this.publishing_date = publishing_date;
+    }
+
     public int getId() {
         return id;
     }

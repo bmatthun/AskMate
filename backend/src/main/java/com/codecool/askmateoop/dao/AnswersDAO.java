@@ -2,6 +2,7 @@ package com.codecool.askmateoop.dao;
 
 import com.codecool.askmateoop.dao.model.Answer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface AnswersDAO {
@@ -9,7 +10,7 @@ public interface AnswersDAO {
 
 //    Question getQuestionById(int id);
 //
-//    int createQuestion(Question question);
+    int createAnswer(Answer answer, int questionId, int userId) throws SQLException;
 //
 //    boolean deleteQuestionById(int id);
 }
