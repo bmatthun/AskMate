@@ -1,6 +1,5 @@
 package com.codecool.askmateoop.dao.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Question {
@@ -23,31 +22,16 @@ public class Question {
         this.publicationDate = publicationDate;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public LocalDateTime getPublicationDate() {
         return publicationDate;
-    }
-
-    public void setPublicationDate(LocalDateTime publicationDate) {
-        this.publicationDate = publicationDate;
     }
 }
