@@ -66,14 +66,15 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public int createQuestion(Question question) {
-        String sql = "INSERT INTO question(title, description, published_date) VALUES (?,?,?);";
+    public int createQuestion(Question question, int userId) {
+        String sql = "INSERT INTO question(title, description, published_date, user_id) VALUES (?,?,?,?);";
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
         ) {
             statement.setString(1, question.getTitle());
             statement.setString(2, question.getDescription());
             statement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setInt(4, userId);
 
             statement.executeUpdate();
 

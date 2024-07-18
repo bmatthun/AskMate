@@ -29,9 +29,9 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
-    @PostMapping("/")
-    public int addNewQuestion(@RequestBody NewQuestionDTO newQuestionDTO) {
-        return questionService.addNewQuestion(newQuestionDTO);
+    @PostMapping("/{userId}")
+    public int addNewQuestion(@PathVariable int userId, @RequestBody NewQuestionDTO newQuestionDTO) {
+        return questionService.addNewQuestion(newQuestionDTO, userId);
     }
 
     @DeleteMapping("/{id}")

@@ -45,8 +45,8 @@ public class QuestionService {
         return questionsDAO.deleteQuestionById(id);
     }
 
-    public int addNewQuestion(NewQuestionDTO newQuestionDTO) {
+    public int addNewQuestion(NewQuestionDTO newQuestionDTO, int userId) {
         Question question = parseNewQuestionDTOtoQuestion(newQuestionDTO);
-        return questionsDAO.createQuestion(question);
+        return questionsDAO.createQuestion(question, userId);
     }
 }

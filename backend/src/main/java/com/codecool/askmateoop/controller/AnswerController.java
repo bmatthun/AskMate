@@ -33,7 +33,7 @@ public class AnswerController {
 //        return questionService.getQuestionById(id);
 //    }
 //
-    @PostMapping("/{questionId}/{userId}")
+    @PostMapping("/{userId}/{questionId}")
     public int addNewAnswerByUser(@PathVariable int questionId, @PathVariable int userId, @RequestBody NewAnswerDTO answer) throws SQLException {
         return answerService.addNewAnswer(answer, questionId, userId);
     }

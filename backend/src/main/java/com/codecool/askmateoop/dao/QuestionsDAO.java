@@ -9,7 +9,7 @@ public interface QuestionsDAO {
 
     Question getQuestionById(int id);
 
-    int createQuestion(Question question);
+    int createQuestion(Question question, int userId);
 
     boolean deleteQuestionById(int id);
 }
