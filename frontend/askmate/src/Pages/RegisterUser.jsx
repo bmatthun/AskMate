@@ -3,6 +3,7 @@ import UserForm from "./UserForm/UserForm";
 
 
 const createUser = (user) => {
+  console.log(user)
   return fetch("/api/user/create", {
     method: "POST",
     headers: {
@@ -14,7 +15,6 @@ const createUser = (user) => {
 
 const UserCreator = () => {
   const navigate = useNavigate();
-
   const handleCreateUser = (user) => {
 
     createUser(user)

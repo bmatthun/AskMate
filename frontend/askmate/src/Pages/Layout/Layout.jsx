@@ -11,11 +11,11 @@ const Layout = () => (
   <div className="Layout">
     <nav>
       <ul>
-        <li>
+        {/* <li>
           <Link to="/login">
             <button type="button">Login</button>
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/register">
           <button type="button">Register</button>

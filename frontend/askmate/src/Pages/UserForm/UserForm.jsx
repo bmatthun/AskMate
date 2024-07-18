@@ -1,20 +1,20 @@
 import { useState } from "react";
 
 const UserForm = ({ onSave, user, onCancel }) => {
-  const [name, setName] = useState(user?.name ?? "");
+  const [userName, setUserName] = useState(user?.userName ?? "");
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (user) {
+      console.log(user)
       return onSave({
-        ...user,
-        name
+        userName 
       });
     }
 
     return onSave({
-      name
+      userName
     });
   };
 
@@ -23,8 +23,8 @@ const UserForm = ({ onSave, user, onCancel }) => {
       <div className="control">
         <label htmlFor="name">Username:</label>
         <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           name="name"
           id="name"
         />
