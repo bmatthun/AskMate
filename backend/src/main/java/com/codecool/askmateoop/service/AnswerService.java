@@ -45,4 +45,8 @@ public class AnswerService {
         return answersDAO.createAnswer(answer, questionId, userId);
     }
 
+    public boolean deleteAnswerByAnswerIdAndUserId(int answerId, int userId) {
+        return answersDAO.deleteAnswer(answerId, userId);
+    }
+
 }

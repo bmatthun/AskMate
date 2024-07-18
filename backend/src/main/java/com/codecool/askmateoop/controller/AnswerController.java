@@ -38,8 +38,8 @@ public class AnswerController {
         return answerService.addNewAnswer(answer, questionId, userId);
     }
 
-//    @DeleteMapping("/{id}")
-//    public boolean deleteQuestionById(@PathVariable int id) {
-//        return questionService.deleteQuestionById(id);
-//    }
+    @DeleteMapping("/{userId}/{answerId}")
+    public boolean deleteQuestionById(@PathVariable int userId, @PathVariable int answerId) {
+        return answerService.deleteAnswerByAnswerIdAndUserId(userId, answerId);
+    }
 }

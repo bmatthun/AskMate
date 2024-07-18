@@ -11,6 +11,6 @@ public interface AnswersDAO {
 //    Question getQuestionById(int id);
 //
     int createAnswer(Answer answer, int questionId, int userId) throws SQLException;
-//
-//    boolean deleteQuestionById(int id);
+
+    boolean deleteAnswer(int answerId, int userId);
 }

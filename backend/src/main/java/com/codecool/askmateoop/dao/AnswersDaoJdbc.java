@@ -74,6 +74,22 @@ public class AnswersDaoJdbc implements AnswersDAO {
             }
         }
     }
+
+    @Override
+    public boolean deleteAnswer(int answerId, int userId) {
+        String sql = "DELETE FROM answer WHERE user_id = ? AND id = ?;";
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)
+        ) {
+            statement.setInt(1, userId);
+            statement.setInt(2, answerId);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 //
@@ -102,18 +118,6 @@ public class AnswersDaoJdbc implements AnswersDAO {
 //
 //    }
 //
-//    @Override
-//    public boolean deleteQuestionById(int id) {
-//        String sql = "DELETE FROM question WHERE id = ?;";
-//        try (Connection conn = databaseConnection.getConnection();
-//             PreparedStatement statement = conn.prepareStatement(sql)
-//        ) {
-//            statement.setInt(1, id);
-//
-//            int rowsAffected = statement.executeUpdate();
-//            return rowsAffected > 0;
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+
 //    }
 
