@@ -34,4 +34,8 @@ public class Question {
     public LocalDateTime getPublicationDate() {
         return publicationDate;
     }
+
+    public int getId() {
+        return id;
+    }
 }
