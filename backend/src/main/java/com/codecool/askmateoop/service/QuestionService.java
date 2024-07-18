@@ -25,17 +25,14 @@ public class QuestionService {
     }
 
     private Question parseNewQuestionDTOtoQuestion(NewQuestionDTO newQuestionDTO) {
-        System.out.println(LocalDateTime.now());
         return new Question(newQuestionDTO.getTitle(), newQuestionDTO.getDescription(), LocalDateTime.now());
     }
 
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionsDAO.getAllQuestions();
-        List<QuestionDTO> questionDTOS = allQuestions.stream()
+        return allQuestions.stream()
                 .map(question -> parseQuestionToQuestionDTO(question))
                 .toList();
-
-        return questionDTOS;
     }
 
     public QuestionDTO getQuestionById(int id) {
