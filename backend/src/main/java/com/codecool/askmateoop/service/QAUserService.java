@@ -21,7 +21,7 @@ public class QAUserService {
     }
 
     private QAUserDTO parseQAUserToQAUserDTO(QAUser qaUser) {
-        return new QAUserDTO(qaUser.getUserName(), qaUser.getRegistrationTime());
+        return new QAUserDTO(qaUser.getId(), qaUser.getUserName(), qaUser.getRegistrationTime());
     }
 
     private QAUser parseNewQAUserDTOToQAUser(NewQAUserDTO newQAUserDTO) {

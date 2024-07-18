@@ -35,7 +35,7 @@ public class QAUserController {
     }
 
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public int addNewQAUser(@RequestBody NewQAUserDTO newQAUserDTO) {
         return qAUserService.addNewQAUser(newQAUserDTO);
     }

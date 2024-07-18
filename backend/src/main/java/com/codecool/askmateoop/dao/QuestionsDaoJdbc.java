@@ -92,16 +92,31 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public boolean deleteQuestionById(int id) {
-        String sql = "DELETE FROM question WHERE id = ?;";
-        try (Connection conn = databaseConnection.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql)
-        ) {
-            statement.setInt(1, id);
+        String deleteAnswersSql = "DELETE FROM answer WHERE question_id = ?;";
+        String deleteQuestionSql = "DELETE FROM question WHERE id = ?;";
 
-            int rowsAffected = statement.executeUpdate();
-            return rowsAffected > 0;
+        try (Connection conn = databaseConnection.getConnection()) {
+            conn.setAutoCommit(false); // Start transaction
+
+            try (PreparedStatement deleteAnswersStmt = conn.prepareStatement(deleteAnswersSql);
+                 PreparedStatement deleteQuestionStmt = conn.prepareStatement(deleteQuestionSql)) {
+                deleteAnswersStmt.setInt(1, id);
+                deleteAnswersStmt.executeUpdate();
+
+                deleteQuestionStmt.setInt(1, id);
+                int rowsAffected = deleteQuestionStmt.executeUpdate();
+
+                conn.commit();
+                return rowsAffected > 0;
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw new RuntimeException(e);
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }
