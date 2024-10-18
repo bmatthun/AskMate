@@ -23,9 +23,9 @@ AskMate is a fullstack application where users can ask questions, manage them, a
    cd AskMate
 2. Backend setup:
 Navigate to the backend directory:
-  ```
-  cd backend
-  ```
+     ```
+     cd backend
+     ```
 3. Build the Spring Boot project with Maven:
    ```
    ./mvnw clean install
