@@ -14,44 +14,43 @@ AskMate is a fullstack application where users can ask questions, manage them, a
 - Java JDK (>= 11)
 - Node.js (>= 14.x)
 - Maven (for Java project)
-- npm
 
 ## Installation
 
 1. Clone the repository:
-   ```bash
+   ```
    git clone https://github.com/E-Zsofi/AskMate.git
    cd AskMate
 2. Backend setup:
 Navigate to the backend directory:
   ```
   cd backend
-```
+  ```
 3. Build the Spring Boot project with Maven:
-```
-./mvnw clean install
-```
+   ```
+   ./mvnw clean install
+   ```
 4. Start the Spring Boot server:
-```
-./mvnw spring-boot:run
-```
+   ```
+   ./mvnw spring-boot:run
+   ```
 5. Frontend setup:
 Open a new terminal and navigate to the frontend directory:
-```
-cd ../frontend
-```
+   ```
+   cd ../frontend
+   ```
 6. Install frontend dependencies:
-```
-npm install
-```
+   ```
+   npm install
+   ```
 7. Start the Vite development server:
- ```
-npm run dev
-```
+   ```
+   npm run dev
+   ```
 The frontend should now run at http://localhost:3000.
 
 8. Backend: Ensure the Spring Boot server is running with the command:
-```
-cd backend
-./mvnw spring-boot:run
-```
+   ```
+   cd backend
+   ./mvnw spring-boot:run
+   ```
