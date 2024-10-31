@@ -11,7 +11,7 @@ AskMate is a fullstack application where users can ask questions, manage them, a
 
 ## Prerequisites
 
-- Java JDK (>= 11)
+- Java JRE (>= 11)
 - Node.js (>= 14.x)
 - Maven (for Java project)
 
